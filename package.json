@@ -3,6 +3,11 @@
   "displayName": "GitHub Copilot Voice Hooks",
   "description": "Japanese voice announcements for GitHub Copilot events",
   "version": "0.0.1",
+  "publisher": "neuvecom",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neuvecom/github-copilot-voice-hooks.git"
+  },
   "engines": {
     "vscode": "^1.105.0"
   },
@@ -10,7 +15,7 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {
