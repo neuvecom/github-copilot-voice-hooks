@@ -22,6 +22,15 @@
 
 ## インストール
 
+### VSIXファイルから直接インストール（推奨）
+
+1. [GitHub Releases](https://github.com/neuvecom/github-copilot-voice-hooks/releases/latest)から`github-copilot-voice-hooks-0.0.1.vsix`をダウンロード
+2. VS Codeを開く
+3. コマンドパレット（`Cmd+Shift+P` / `Ctrl+Shift+P`）を開く
+4. `Extensions: Install from VSIX...`を選択
+5. ダウンロードしたvsixファイルを選択
+6. インストール完了後、`Test Japanese Voice`コマンドでテスト
+
 ### 開発版
 
 1. このリポジトリをクローン
