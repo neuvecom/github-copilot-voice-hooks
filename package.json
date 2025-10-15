@@ -1,0 +1,87 @@
+{
+  "name": "github-copilot-voice-hooks",
+  "displayName": "GitHub Copilot Voice Hooks",
+  "description": "Japanese voice announcements for GitHub Copilot events",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "github-copilot-voice-hooks.enableVoiceHooks",
+        "title": "Enable Voice Hooks"
+      },
+      {
+        "command": "github-copilot-voice-hooks.disableVoiceHooks",
+        "title": "Disable Voice Hooks"
+      },
+      {
+        "command": "github-copilot-voice-hooks.testVoice",
+        "title": "Test Japanese Voice"
+      }
+    ],
+    "configuration": {
+      "title": "GitHub Copilot Voice Hooks",
+      "properties": {
+        "copilotVoiceHooks.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable voice announcements for Copilot events"
+        },
+        "copilotVoiceHooks.voiceName": {
+          "type": "string",
+          "default": "Kyoko",
+          "description": "Japanese voice name for announcements",
+          "enum": ["Kyoko", "Sandy", "Eddy", "Flo", "Grandma", "Grandpa", "Reed", "Rocko", "Shelley"]
+        },
+        "copilotVoiceHooks.volume": {
+          "type": "number",
+          "default": 1.0,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Voice volume (0.0 to 1.0)"
+        },
+        "copilotVoiceHooks.rate": {
+          "type": "number",
+          "default": 200,
+          "minimum": 100,
+          "maximum": 400,
+          "description": "Voice speech rate (words per minute)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.105.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.36.0",
+    "typescript": "^5.9.3",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.102.0",
+    "webpack-cli": "^6.0.1",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
