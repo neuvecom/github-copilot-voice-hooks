@@ -37,6 +37,9 @@ interface VoiceConfig {
 
 class VoiceManager {
     private config: VoiceConfig;
+    private isPlaying: boolean = false;
+    private lastEventTime: Map<string, number> = new Map();
+    private readonly DEBOUNCE_TIME = 1000; // 1秒のデバウンス
 
     constructor() {
         this.config = this.loadConfig();
@@ -57,15 +60,28 @@ class VoiceManager {
     }
 
     public async speak(eventKey: string): Promise<void> {
-        if (!this.config.enabled) {
+        if (!this.config.enabled || this.isPlaying) {
             return;
         }
+
+        // デバウンス: 同じイベントが短時間に複数回発生することを防ぐ
+        const now = Date.now();
+        const lastTime = this.lastEventTime.get(eventKey) || 0;
+        if (now - lastTime < this.DEBOUNCE_TIME) {
+            return;
+        }
+        this.lastEventTime.set(eventKey, now);
 
         const text = JAPANESE_EVENT_DESCRIPTIONS[eventKey] || eventKey;
         await this.speakText(text);
     }
 
     private async speakText(text: string): Promise<void> {
+        if (this.isPlaying) {
+            return;
+        }
+
+        this.isPlaying = true;
         try {
             // macOS: Use `say` command with Japanese voice
             if (process.platform === 'darwin') {
@@ -82,11 +98,18 @@ class VoiceManager {
             }
         } catch (error) {
             console.error('Voice synthesis failed:', error);
+        } finally {
+            this.isPlaying = false;
         }
     }
 
     public async testVoice(): Promise<void> {
-        await this.speak('test.voice');
+        // テスト音声はデバウンスを無視する
+        if (this.isPlaying) {
+            return;
+        }
+        const text = JAPANESE_EVENT_DESCRIPTIONS['test.voice'];
+        await this.speakText(text);
     }
 }
 
@@ -190,8 +213,10 @@ export function activate(context: vscode.ExtensionContext) {
     const eventMonitor = new CopilotEventMonitor(voiceManager);
     const copilotIntegration = new CopilotIntegration(voiceManager);
 
-    // Announce activation
-    voiceManager.speak('extension.enable');
+    // Announce activation with delay to prevent multiple announcements
+    setTimeout(() => {
+        voiceManager.speak('extension.enable');
+    }, 1000);
 
     // Register commands
     const enableCommand = vscode.commands.registerCommand('github-copilot-voice-hooks.enableVoiceHooks', () => {
