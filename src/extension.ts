@@ -40,9 +40,14 @@ class VoiceManager {
     private isPlaying: boolean = false;
     private lastEventTime: Map<string, number> = new Map();
     private readonly DEBOUNCE_TIME = 1000; // 1秒のデバウンス
+    private statusBarItem: vscode.StatusBarItem;
 
     constructor() {
         this.config = this.loadConfig();
+        this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+        this.statusBarItem.command = 'github-copilot-voice-hooks.toggleVoiceHooks';
+        this.updateStatusBar();
+        this.statusBarItem.show();
     }
 
     private loadConfig(): VoiceConfig {
@@ -57,6 +62,37 @@ class VoiceManager {
 
     public updateConfig(): void {
         this.config = this.loadConfig();
+        this.updateStatusBar();
+    }
+
+    private updateStatusBar(): void {
+        if (this.config.enabled) {
+            this.statusBarItem.text = '$(unmute) Voice';
+            this.statusBarItem.tooltip = 'Voice Hooks有効 - クリックで無効化';
+            this.statusBarItem.backgroundColor = undefined;
+        } else {
+            this.statusBarItem.text = '$(mute) Voice';
+            this.statusBarItem.tooltip = 'Voice Hooks無効 - クリックで有効化';
+            this.statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+        }
+    }
+
+    public toggleEnabled(): void {
+        const newState = !this.config.enabled;
+        vscode.workspace.getConfiguration('copilotVoiceHooks').update('enabled', newState, true);
+        this.config.enabled = newState;
+        this.updateStatusBar();
+        
+        if (newState) {
+            vscode.window.showInformationMessage('Voice Hooks有効');
+            this.speak('extension.enable');
+        } else {
+            vscode.window.showInformationMessage('Voice Hooks無効');
+        }
+    }
+
+    public isEnabled(): boolean {
+        return this.config.enabled;
     }
 
     public async speak(eventKey: string): Promise<void> {
@@ -110,6 +146,10 @@ class VoiceManager {
         }
         const text = JAPANESE_EVENT_DESCRIPTIONS['test.voice'];
         await this.speakText(text);
+    }
+
+    public dispose(): void {
+        this.statusBarItem.dispose();
     }
 }
 
@@ -172,25 +212,6 @@ class CopilotEventMonitor {
             })
         );
 
-        // Command execution monitoring for Git and other operations
-        this.disposables.push(
-            vscode.commands.registerCommand('git.commit', () => {
-                this.voiceManager.speak('git.commit');
-            })
-        );
-
-        this.disposables.push(
-            vscode.commands.registerCommand('git.push', () => {
-                this.voiceManager.speak('git.push');
-            })
-        );
-
-        this.disposables.push(
-            vscode.commands.registerCommand('git.pull', () => {
-                this.voiceManager.speak('git.pull');
-            })
-        );
-
         // Configuration changes
         this.disposables.push(
             vscode.workspace.onDidChangeConfiguration((event) => {
@@ -219,6 +240,10 @@ export function activate(context: vscode.ExtensionContext) {
     }, 1000);
 
     // Register commands
+    const toggleCommand = vscode.commands.registerCommand('github-copilot-voice-hooks.toggleVoiceHooks', () => {
+        voiceManager.toggleEnabled();
+    });
+
     const enableCommand = vscode.commands.registerCommand('github-copilot-voice-hooks.enableVoiceHooks', () => {
         vscode.workspace.getConfiguration('copilotVoiceHooks').update('enabled', true, true);
         vscode.window.showInformationMessage('Voice Hooks enabled');
@@ -235,7 +260,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showInformationMessage('Voice test completed');
     });
 
-    context.subscriptions.push(enableCommand, disableCommand, testVoiceCommand, eventMonitor, copilotIntegration);
+    context.subscriptions.push(toggleCommand, enableCommand, disableCommand, testVoiceCommand, eventMonitor, copilotIntegration, voiceManager);
 }
 
 export function deactivate() {
