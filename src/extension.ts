@@ -33,6 +33,7 @@ interface VoiceConfig {
     voiceName: string;
     volume: number;
     rate: number;
+    announceWorkspace: boolean;
 }
 
 class VoiceManager {
@@ -50,13 +51,35 @@ class VoiceManager {
         this.statusBarItem.show();
     }
 
+    private getWorkspaceName(): string {
+        const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+        if (workspaceFolder) {
+            return workspaceFolder.name;
+        }
+        return '';
+    }
+
+    private getWorkspacePrefix(): string {
+        if (!this.config.announceWorkspace) {
+            return '';
+        }
+        const workspaceName = this.getWorkspaceName();
+        if (workspaceName) {
+            // プロジェクト名を分かりやすく整形（アンダースコアをスペースに変換）
+            const formattedName = workspaceName.replace(/_/g, ' ');
+            return `${formattedName}プロジェクトで、`;
+        }
+        return '';
+    }
+
     private loadConfig(): VoiceConfig {
         const config = vscode.workspace.getConfiguration('copilotVoiceHooks');
         return {
             enabled: config.get('enabled', true),
             voiceName: config.get('voiceName', 'Kyoko'),
             volume: config.get('volume', 1.0),
-            rate: config.get('rate', 200)
+            rate: config.get('rate', 200),
+            announceWorkspace: config.get('announceWorkspace', true)
         };
     }
 
@@ -108,7 +131,9 @@ class VoiceManager {
         }
         this.lastEventTime.set(eventKey, now);
 
-        const text = JAPANESE_EVENT_DESCRIPTIONS[eventKey] || eventKey;
+        const baseText = JAPANESE_EVENT_DESCRIPTIONS[eventKey] || eventKey;
+        const workspacePrefix = this.getWorkspacePrefix();
+        const text = workspacePrefix + baseText;
         await this.speakText(text);
     }
 
