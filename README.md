@@ -24,7 +24,7 @@
 
 ### VSIXファイルから直接インストール（推奨）
 
-1. [GitHub Releases](https://github.com/neuvecom/github-copilot-voice-hooks/releases/latest)から`github-copilot-voice-hooks-0.0.1.vsix`をダウンロード
+1. [GitHub Releases](https://github.com/neuvecom/github-copilot-voice-hooks/releases/latest)から最新のvsixファイルをダウンロード
 2. VS Codeを開く
 3. コマンドパレット（`Cmd+Shift+P` / `Ctrl+Shift+P`）を開く
 4. `Extensions: Install from VSIX...`を選択
@@ -63,10 +63,19 @@ npm run compile
 - Gitコミット: 「Gitコミットを作成しました」
 - デバッグ開始: 「デバッグを開始しました」
 
+### ステータスバーでの操作
+
+ウィンドウ右下のステータスバーにアイコンが表示されます：
+- `🔊 Voice`: 音声通知が有効（クリックで無効化）
+- `🔇 Voice`: 音声通知が無効（クリックで有効化）
+
+アイコンをクリックするだけで音声のオン/オフを切り替えられます。
+
 ### コマンド
 
 コマンドパレット（`Cmd+Shift+P` / `Ctrl+Shift+P`）から以下のコマンドを実行できます：
 
+- `Toggle Voice Hooks`: 音声通知のオン/オフを切り替え
 - `Enable Voice Hooks`: 音声通知を有効にする
 - `Disable Voice Hooks`: 音声通知を無効にする
 - `Test Japanese Voice`: 音声テストを実行
