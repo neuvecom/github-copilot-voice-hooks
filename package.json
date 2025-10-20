@@ -2,7 +2,7 @@
   "name": "github-copilot-voice-hooks",
   "displayName": "GitHub Copilot Voice Hooks",
   "description": "GitHub Copilot イベントに対して日本語音声でフィードバックを提供する VS Code 拡張機能",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "neuvecom",
   "repository": {
     "type": "git",
