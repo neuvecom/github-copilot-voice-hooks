@@ -11,7 +11,6 @@ const JAPANESE_EVENT_DESCRIPTIONS: { [key: string]: string } = {
     'file.save': 'ファイルを保存しました',
     'file.create': 'ファイルを作成しました',
     'file.delete': 'ファイルを削除しました',
-    'copilot.suggestion': 'Copilotが提案を生成しました',
     'copilot.accept': 'Copilotの提案を受け入れました',
     'copilot.reject': 'Copilotの提案を拒否しました',
     'extension.enable': 'Voice Hooksが有効になりました',
@@ -260,9 +259,14 @@ export function activate(context: vscode.ExtensionContext) {
     const copilotIntegration = new CopilotIntegration(voiceManager);
 
     // Announce activation with delay to prevent multiple announcements
-    setTimeout(() => {
-        voiceManager.speak('extension.enable');
-    }, 1000);
+    const config = vscode.workspace.getConfiguration('copilotVoiceHooks');
+    const announceStartup = config.get('announceStartup', true);
+    
+    if (announceStartup) {
+        setTimeout(() => {
+            voiceManager.speak('extension.enable');
+        }, 1000);
+    }
 
     // Register commands
     const toggleCommand = vscode.commands.registerCommand('github-copilot-voice-hooks.toggleVoiceHooks', () => {

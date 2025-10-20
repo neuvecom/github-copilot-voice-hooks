@@ -79,6 +79,11 @@
           "type": "boolean",
           "default": true,
           "description": "Announce workspace name before each event (useful when multiple projects are open)"
+        },
+        "copilotVoiceHooks.announceStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Announce when Voice Hooks extension is activated at startup"
         }
       }
     }
