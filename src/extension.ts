@@ -178,12 +178,33 @@ class VoiceManager {
 }
 
 class CopilotEventMonitor {
+        private setupGitListeners(): void {
+            // Git拡張APIが有効な場合のみ
+            const gitExtension = vscode.extensions.getExtension('vscode.git')?.exports;
+            if (!gitExtension) return;
+            const api = gitExtension.getAPI(1);
+            // すべてのリポジトリでコミット・プッシュを監視
+            for (const repo of api.repositories) {
+                repo.state.onDidChange(() => {
+                    // コミット直後の状態
+                    if (repo.state.HEAD?.commit && repo.state.workingTreeChanges.length === 0 && repo.state.indexChanges.length === 0) {
+                        this.voiceManager.speak('git.commit');
+                    }
+                });
+                repo.onDidRunOperation((e: any) => {
+                    if (e.operation === 2) { // 2: Push
+                        this.voiceManager.speak('git.push');
+                    }
+                });
+            }
+        }
     private voiceManager: VoiceManager;
     private disposables: vscode.Disposable[] = [];
 
     constructor(voiceManager: VoiceManager) {
         this.voiceManager = voiceManager;
         this.setupEventListeners();
+        this.setupGitListeners();
     }
 
     private setupEventListeners(): void {
