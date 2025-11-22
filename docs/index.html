@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GitHub Copilot Voice Hooks - 日本語音声でGitHub Copilotのイベントを通知するVS Code拡張機能">
+    <meta name="keywords" content="VS Code, GitHub Copilot, 音声通知, 日本語, 拡張機能">
+    <meta name="author" content="neuvecom">
+    <title>GitHub Copilot Voice Hooks - 日本語音声通知拡張機能</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B4XS7320VZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B4XS7320VZ');
+    </script>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="icon">🔊</span>
+                    GitHub Copilot Voice Hooks
+                </h1>
+                <nav class="nav">
+                    <a href="#features" class="nav-link">機能</a>
+                    <a href="#install" class="nav-link">インストール</a>
+                    <a href="#usage" class="nav-link">使い方</a>
+                    <a href="#settings" class="nav-link">設定</a>
+                    <a href="https://github.com/neuvecom/github-copilot-voice-hooks" class="nav-link" target="_blank">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">日本語音声でGitHub Copilotのイベントを通知</h2>
+                <p class="hero-description">
+                    VS Code拡張機能として、GitHub Copilotやファイル操作、Git操作などのイベントを<br>
+                    日本語音声で通知します。作業効率を高める音声フィードバックを体験してください。
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://github.com/neuvecom/github-copilot-voice-hooks/releases/latest" class="btn btn-primary" target="_blank">
+                        <span class="btn-icon">⬇️</span>
+                        ダウンロード
+                    </a>
+                    <a href="#install" class="btn btn-secondary">
+                        <span class="btn-icon">📖</span>
+                        インストール手順
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能セクション -->
+    <section id="features" class="section features">
+        <div class="container">
+            <h2 class="section-title">主な機能</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3 class="feature-title">ファイル操作の音声通知</h3>
+                    <p class="feature-description">
+                        ファイルの保存、作成、削除時に日本語で通知。作業状況を耳で確認できます。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Copilot統合</h3>
+                    <p class="feature-description">
+                        GitHub Copilotの提案やアクションを音声で通知。コーディングフローを中断しません。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Git操作</h3>
+                    <p class="feature-description">
+                        コミット、プッシュ、プルなどのGit操作を音声で確認。操作ミスを防ぎます。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎌</div>
+                    <h3 class="feature-title">日本語音声</h3>
+                    <p class="feature-description">
+                        macOSの高品質な日本語音声合成を使用。自然な発音で通知します。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3 class="feature-title">設定可能</h3>
+                    <p class="feature-description">
+                        音声、音量、読み上げ速度をカスタマイズ可能。好みに合わせて調整できます。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3 class="feature-title">マルチプラットフォーム</h3>
+                    <p class="feature-description">
+                        macOS、Linux、Windowsに対応。各OSのネイティブTTSシステムを使用します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- インストールセクション -->
+    <section id="install" class="section install">
+        <div class="container">
+            <h2 class="section-title">インストール</h2>
+            <div class="install-methods">
+                <div class="install-method">
+                    <h3 class="method-title">
+                        <span class="method-icon">⭐</span>
+                        VSIXファイルから直接インストール（推奨）
+                    </h3>
+                    <ol class="method-steps">
+                        <li>
+                            <a href="https://github.com/neuvecom/github-copilot-voice-hooks/releases/latest" target="_blank" class="link">GitHub Releases</a>
+                            から最新のvsixファイルをダウンロード
+                        </li>
+                        <li>VS Codeを開く</li>
+                        <li>コマンドパレット（<code>Cmd+Shift+P</code> / <code>Ctrl+Shift+P</code>）を開く</li>
+                        <li><code>Extensions: Install from VSIX...</code>を選択</li>
+                        <li>ダウンロードしたvsixファイルを選択</li>
+                        <li>インストール完了後、<code>Test Japanese Voice</code>コマンドでテスト</li>
+                    </ol>
+                </div>
+                <div class="install-method">
+                    <h3 class="method-title">
+                        <span class="method-icon">👨‍💻</span>
+                        開発版
+                    </h3>
+                    <div class="code-block">
+                        <pre><code># リポジトリをクローン
+git clone https://github.com/neuvecom/github-copilot-voice-hooks.git
+cd github-copilot-voice-hooks
+
+# 依存関係をインストール
+npm install
+
+# ビルド
+npm run compile
+
+# F5キーでデバッグモード実行</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使い方セクション -->
+    <section id="usage" class="section usage">
+        <div class="container">
+            <h2 class="section-title">使い方</h2>
+            <div class="usage-content">
+                <div class="usage-block">
+                    <h3 class="usage-subtitle">基本的な使用</h3>
+                    <p>拡張機能をインストールして有効にすると、以下のイベントで自動的に日本語音声が再生されます：</p>
+                    <ul class="usage-list">
+                        <li>ファイルの保存: 「ファイルを保存しました」</li>
+                        <li>Copilotの提案: 「Copilotが提案を生成しました」</li>
+                        <li>Gitコミット: 「Gitコミットを作成しました」</li>
+                        <li>デバッグ開始: 「デバッグを開始しました」</li>
+                    </ul>
+                </div>
+                <div class="usage-block">
+                    <h3 class="usage-subtitle">ステータスバーでの操作</h3>
+                    <p>ウィンドウ右下のステータスバーにアイコンが表示されます：</p>
+                    <ul class="usage-list">
+                        <li><code>🔊 Voice</code>: 音声通知が有効（クリックで無効化）</li>
+                        <li><code>🔇 Voice</code>: 音声通知が無効（クリックで有効化）</li>
+                    </ul>
+                </div>
+                <div class="usage-block">
+                    <h3 class="usage-subtitle">コマンド</h3>
+                    <p>コマンドパレット（<code>Cmd+Shift+P</code> / <code>Ctrl+Shift+P</code>）から以下のコマンドを実行できます：</p>
+                    <ul class="usage-list">
+                        <li><code>Toggle Voice Hooks</code>: 音声通知のオン/オフを切り替え</li>
+                        <li><code>Enable Voice Hooks</code>: 音声通知を有効にする</li>
+                        <li><code>Disable Voice Hooks</code>: 音声通知を無効にする</li>
+                        <li><code>Test Japanese Voice</code>: 音声テストを実行</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 設定セクション -->
+    <section id="settings" class="section settings">
+        <div class="container">
+            <h2 class="section-title">設定</h2>
+            <p class="section-description">
+                VS Codeの設定（<code>settings.json</code>）で以下の項目をカスタマイズできます：
+            </p>
+            <div class="code-block">
+                <pre><code>{
+  "copilotVoiceHooks.enabled": true,
+  "copilotVoiceHooks.voiceName": "Kyoko",
+  "copilotVoiceHooks.volume": 1.0,
+  "copilotVoiceHooks.rate": 200,
+  "copilotVoiceHooks.announceWorkspace": true,
+  "copilotVoiceHooks.announceStartup": true
+}</code></pre>
+            </div>
+            <div class="settings-table">
+                <h3 class="settings-subtitle">利用可能な音声（macOS）</h3>
+                <div class="voices-grid">
+                    <span class="voice-item">Kyoko（デフォルト）</span>
+                    <span class="voice-item">Sandy</span>
+                    <span class="voice-item">Eddy</span>
+                    <span class="voice-item">Flo</span>
+                    <span class="voice-item">Grandma</span>
+                    <span class="voice-item">Grandpa</span>
+                    <span class="voice-item">Reed</span>
+                    <span class="voice-item">Rocko</span>
+                    <span class="voice-item">Shelley</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- プラットフォームセクション -->
+    <section class="section platforms">
+        <div class="container">
+            <h2 class="section-title">対応プラットフォーム</h2>
+            <div class="platforms-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">🍎</div>
+                    <h3 class="platform-name">macOS</h3>
+                    <p class="platform-description"><code>say</code>コマンドを使用（推奨）</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🐧</div>
+                    <h3 class="platform-name">Linux</h3>
+                    <p class="platform-description"><code>espeak</code>を使用</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🪟</div>
+                    <h3 class="platform-name">Windows</h3>
+                    <p class="platform-description">PowerShellの音声合成を使用</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- トラブルシューティングセクション -->
+    <section class="section troubleshooting">
+        <div class="container">
+            <h2 class="section-title">トラブルシューティング</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3 class="faq-question">音声が聞こえない場合</h3>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>システムの音量設定を確認</li>
+                            <li>コマンドパレットから「Test Japanese Voice」を実行</li>
+                            <li><code>copilotVoiceHooks.voiceName</code>の設定を確認</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">macOSでの音声確認</h3>
+                    <div class="faq-answer">
+                        <p>ターミナルで以下のコマンドで音声をテスト：</p>
+                        <div class="code-block">
+                            <pre><code># 音声テスト
+say -v Kyoko "テストです"
+
+# 利用可能な日本語音声を確認
+say -v "?" | grep ja_JP</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">GitHub Copilot Voice Hooks</h3>
+                    <p class="footer-description">
+                        日本語音声でGitHub Copilotのイベントを通知するVS Code拡張機能
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">リンク</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/neuvecom/github-copilot-voice-hooks" target="_blank">GitHub</a></li>
+                        <li><a href="https://github.com/neuvecom/github-copilot-voice-hooks/releases" target="_blank">Releases</a></li>
+                        <li><a href="https://github.com/neuvecom/github-copilot-voice-hooks/issues" target="_blank">Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">参考</h3>
+                    <p class="footer-description">
+                        このプロジェクトは
+                        <a href="https://github.com/TechNavii/claude_hook_voice" target="_blank">TechNavii/claude_hook_voice</a>
+                        からインスパイアされました
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 neuvecom. Licensed under the MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8f998985e2824cb49ccc83adc48b03d2"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+</body>
+</html>
