@@ -2,12 +2,6 @@
 
 **日本語音声でGitHub Copilotのイベントを通知するVS Code拡張機能**
 
-この拡張機能は、GitHub Copilotやその他のVS Codeイベントに対して日本語音声による通知を提供します。
-
-# GitHub Copilot Voice Hooks
-
-**日本語音声でGitHub Copilotのイベントを通知するVS Code拡張機能**
-
 ## 概要
 
 この拡張機能は、GitHub Copilotやその他のVS Codeイベントに対して日本語音声による通知を提供します。Claude voice hooksプロジェクトにインスパイアされ、VS Code環境専用に開発されました。
@@ -180,6 +174,10 @@ npm run lint       # ESLintでコードチェック
 ```bash
 npm run package    # プロダクション用にパッケージ
 ```
+
+## 公式サイト
+
+https://neuvecom.github.io/github-copilot-voice-hooks/
 
 ## ライセンス
 
