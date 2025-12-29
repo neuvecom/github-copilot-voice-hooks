@@ -327,13 +327,16 @@ say -v "?" | grep ja_JP</code></pre>
     <script src="common/js/affiliate-lite.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof AffiliateManager !== 'undefined') {
-                const manager = new AffiliateManager({
+            if (typeof NeuvecomAffiliateBanner !== 'undefined') {
+                const manager = new NeuvecomAffiliateBanner({
                     sid: '3757792',
                     storageKeyPrefix: 'github-copilot-voice-hooks',
-                    fallbackImagePath: '/img/'
+                    fallbackImagesPath: '/img/'
                 });
-                manager.renderBanner('affiliate-banner', 'header');
+                const container = document.getElementById('affiliate-banner');
+                if (container) {
+                    manager.render(container, 'header');
+                }
             }
         });
     </script>
