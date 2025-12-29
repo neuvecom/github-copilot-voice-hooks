@@ -8,6 +8,8 @@
     <meta name="author" content="neuvecom">
     <title>GitHub Copilot Voice Hooks - 日本語音声通知拡張機能</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="common/css/affiliate.css">
+    <link rel="stylesheet" href="common/css/fallback.css">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B4XS7320VZ"></script>
     <script>
@@ -36,6 +38,9 @@
             </div>
         </div>
     </header>
+
+    <!-- 広告バナー -->
+    <div id="affiliate-banner" class="affiliate-container"></div>
 
     <!-- ヒーローセクション -->
     <section class="hero">
@@ -317,6 +322,21 @@ say -v "?" | grep ja_JP</code></pre>
     </footer>
 
     <script src="js/main.js"></script>
+    <!-- アフィリエイト広告 -->
+    <script src="common/js/adblock-detector.js"></script>
+    <script src="common/js/affiliate-lite.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AffiliateManager !== 'undefined') {
+                const manager = new AffiliateManager({
+                    sid: '3757792',
+                    storageKeyPrefix: 'github-copilot-voice-hooks',
+                    fallbackImagePath: '/img/'
+                });
+                manager.renderBanner('affiliate-banner', 'header');
+            }
+        });
+    </script>
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8f998985e2824cb49ccc83adc48b03d2"}'></script>
     <!-- End Cloudflare Web Analytics -->
