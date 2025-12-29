@@ -31,12 +31,13 @@ jobs:
 
       - name: Copy common resources to docs
         run: |
-          mkdir -p docs/common/js docs/common/css docs/common/img
+          mkdir -p docs/common/js docs/common/css docs/common/img docs/data
           cp neuvecom-common/js/affiliate-lite.js docs/common/js/
           cp neuvecom-common/js/adblock-detector.js docs/common/js/
           cp neuvecom-common/css/affiliate.css docs/common/css/
           cp neuvecom-common/css/fallback.css docs/common/css/
           cp -r neuvecom-common/img/* docs/common/img/ 2>/dev/null || true
+          cp data/affiliates.yaml docs/data/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

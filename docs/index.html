@@ -331,7 +331,8 @@ say -v "?" | grep ja_JP</code></pre>
                 const manager = new NeuvecomAffiliateBanner({
                     sid: '3757792',
                     storageKeyPrefix: 'github-copilot-voice-hooks',
-                    fallbackImagesPath: '/img/'
+                    configPath: 'data/affiliates.yaml',
+                    fallbackImagesPath: 'common/img/'
                 });
                 const container = document.getElementById('affiliate-banner');
                 if (container) {
