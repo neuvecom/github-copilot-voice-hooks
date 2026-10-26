@@ -10,4 +10,3 @@ Thumbs.db
 *.vsix
 
 # GitHub Actions でコピーされるファイル（ローカルでは不要）
-docs/common/
